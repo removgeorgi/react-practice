@@ -54,14 +54,21 @@ const List = () => (
       </ul>
 );
 
-const Search = () => (
+const Search = () => {
+  const handleChange = (event) => {
+    console.log(event);
+  }
+  return(
   <div>
     <label htmlFor="search">Search:</label>
-      <input id="search" type="text" />
+      <input id="search" type="text" onChange={handleChange} />
+      {/* onChange attribute is needed first to add logging events of what was inputted
+      and second to add synthetic events which prevents native browser behavior
+      (e.g. refreshing a page after the user clicks a form's submit button) */}
       <button id="search" type="text">Search</button>
   </div>
   );
-
+};
 
 
 export default App;
