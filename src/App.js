@@ -1,4 +1,6 @@
 import './App.css';
+import * as React from 'react';
+import ReactDOM from 'react-dom';
 
 const list = [
   {
@@ -19,17 +21,25 @@ const list = [
   },
 ];
 
-function App() {
-  return(
+const App = () => (
     <div>
       <h1>My hacker stories</h1>
 
-      <label htmlFor="search">Search:</label>
-      <input id="search" type="text" />
-
+    <Search />
       <hr />
-      <ul>
-        {list.map(function(item){
+
+      <List />
+
+      <Search />
+
+      <List />
+    </div>
+  );
+  
+
+const List = () => (
+  <ul>
+          {list.map((item)=>{
           return (
           <li key={item.objectID}>
             <span>
@@ -42,7 +52,16 @@ function App() {
           );
         })}
       </ul>
-    </div>
+);
+
+const Search = () => (
+  <div>
+    <label htmlFor="search">Search:</label>
+      <input id="search" type="text" />
+      <button id="search" type="text">Search</button>
+  </div>
   );
-};
+
+
+
 export default App;
