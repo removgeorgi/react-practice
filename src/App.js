@@ -26,13 +26,11 @@ const App = () => (
       <h1>My hacker stories</h1>
 
     <Search />
-      <hr />
+      
+    <hr />
 
-      <List />
+    <List />
 
-      <Search />
-
-      <List />
     </div>
   );
   
@@ -55,18 +53,36 @@ const List = () => (
 );
 
 const Search = () => {
-  const handleChange = (event) => {
-    console.log(event);
-  }
-  return(
+    const [count,setCount] = React.useState(0);
+
+    function handleChange(event){
+      console.log(event);
+    }
+
+    function handleCLick(){
+      console.log('Button click...');
+    } 
+  
+    return(
   <div>
     <label htmlFor="search">Search:</label>
-      <input id="search" type="text" onChange={handleChange} />
+    <input id="search" type="text" onChange={handleChange}/>
       {/* onChange attribute is needed first to add logging events of what was inputted
       and second to add synthetic events which prevents native browser behavior
       (e.g. refreshing a page after the user clicks a form's submit button) */}
-      <button id="search" type="text">Search</button>
+    <button id="search" type="button" onClick={handleCLick} >Search</button>
   </div>
+    >
+  <div>
+    Count: {count};
+    <button
+      type="button"
+      onClick={function(){
+        setCount(count + 1);
+      }}
+    >
+    </button>
+  </div>  
   );
 };
 
