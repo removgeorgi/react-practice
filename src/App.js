@@ -29,7 +29,7 @@ const App = () => (
       
     <hr />
 
-    <List />
+  <List />
 
     </div>
   );
@@ -64,6 +64,7 @@ const Search = () => {
     } 
   
     return(
+      <div>
   <div>
     <label htmlFor="search">Search:</label>
     <input id="search" type="text" onChange={handleChange}/>
@@ -72,17 +73,18 @@ const Search = () => {
       (e.g. refreshing a page after the user clicks a form's submit button) */}
     <button id="search" type="button" onClick={handleCLick} >Search</button>
   </div>
-    >
   <div>
-    Count: {count};
+    Count: {count}
     <button
       type="button"
       onClick={function(){
         setCount(count + 1);
       }}
     >
+    Test
     </button>
   </div>  
+  </div>
   );
 };
 
