@@ -20,13 +20,17 @@ const App = () => {
       num_comments: 2,
       points: 5,
       objectID: 1,
-    },
+    }
   ];
+    const handleSearch = (event) => {
+      console.log(event.target.value);
+    };
+
     return (
     <div>
       <h1>My hacker stories</h1>
 
-    <Search />
+  <Search onSearch={handleSearch} />
       
     <hr />
 
@@ -44,42 +48,39 @@ const List = (props) => (
       </ul>
 );
 
-const Search = () => {
-    const [count,setCount] = React.useState(0);
+const Search = (props) => {
+  const [searchTerm,setSearchTerm] = React.useState('');
 
-    function handleChange(event){
-      console.log(event);
+    const handleChange = (event) => {
+      setSearchTerm(event.target.value);
+    
+      props.onSearch(event);
     }
 
-    function handleCount(delta){
-      setCount(count + delta);
-    }
+    // const handleChange = (event)=>{
+    //   console.log(event.target.value);
 
-    function handleCLick(){
+    
+
+    const handleCLick = () =>{
       console.log('Button click...');
     } 
   
     return(
-      <div>
   <div>
     <label htmlFor="search">Search:</label>
     <input id="search" type="text" onChange={handleChange}/>
       {/* onChange attribute is needed first to add logging events of what was inputted
       and second to add synthetic events which prevents native browser behavior
       (e.g. refreshing a page after the user clicks a form's submit button) */}
-    Count: {count}
-    
-    <button id="search" type="button" onClick= {() => handleCount(1)} >
-    Increase count
-    </button>
-    <button id="search" type="button" onClick= {() => handleCount(-1)} >
-    Decrease count
-    </button>
-
-  </div>  
+    <hr />
+    <p>
+    Searching for:<strong>{searchTerm}</strong>
+    </p>
   </div>
   );
 };
+
 
 const Item = (props) => (
   <li key={props.item.objectID}>
@@ -92,5 +93,10 @@ const Item = (props) => (
   </li>
 );
 
+const foo = ['one','two','three'];
+const [red,yellow,green] = foo;
+
+console.log(red);
 
 export default App;
+
