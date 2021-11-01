@@ -22,23 +22,32 @@ const App = () => {
       objectID: 1,
     }
   ];
+    const [searchTerm,setSearchTerm] = React.useState('Joro');
+  
     const handleSearch = (event) => {
-      console.log(event.target.value);
-    };
+    setSearchTerm(event.target.value);
+    }
+
+    const searchedStories = stories.filter((story)=>
+    story.title.toLowerCase().includes(searchTerm.toLowerCase()));
+  
+    // const handleSearch = (event) => {
+    //   console.log(event.target.value);
+    // };
 
     return (
     <div>
       <h1>My hacker stories</h1>
 
-  <Search onSearch={handleSearch} />
+  <Search search ={searchTerm} onSearch={handleSearch} />
       
     <hr />
 
-  <List list={stories} />
+  <List list={searchedStories} />
 
     </div>
   );
-    }
+};
 
 const List = (props) => (
       <ul>
@@ -48,38 +57,20 @@ const List = (props) => (
       </ul>
 );
 
-const Search = (props) => {
-  const [searchTerm,setSearchTerm] = React.useState('');
-
-    const handleChange = (event) => {
-      setSearchTerm(event.target.value);
-    
-      props.onSearch(event);
-    }
-
-    // const handleChange = (event)=>{
+const Search = (props) => (
+     // const handleChange = (event)=>{
     //   console.log(event.target.value);
 
-    
-
-    const handleCLick = () =>{
-      console.log('Button click...');
-    } 
   
-    return(
+    
   <div>
     <label htmlFor="search">Search:</label>
-    <input id="search" type="text" onChange={handleChange}/>
+    <input id="search" type="text" onChange={props.onSearch} value={props.search} />
       {/* onChange attribute is needed first to add logging events of what was inputted
       and second to add synthetic events which prevents native browser behavior
       (e.g. refreshing a page after the user clicks a form's submit button) */}
-    <hr />
-    <p>
-    Searching for:<strong>{searchTerm}</strong>
-    </p>
   </div>
-  );
-};
+);
 
 
 const Item = (props) => (
@@ -92,11 +83,6 @@ const Item = (props) => (
             <span>{props.item.points}</span>
   </li>
 );
-
-const foo = ['one','two','three'];
-const [red,yellow,green] = foo;
-
-console.log(red);
 
 export default App;
 
