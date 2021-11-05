@@ -22,14 +22,22 @@ const App = () => {
       objectID: 1,
     }
   ];
-    const [searchTerm,setSearchTerm] = React.useState('Joro');
+    const [searchTerm,setSearchTerm] = React.useState(localStorage.getItem('search') || 'React');
   
     const handleSearch = (event) => {
     setSearchTerm(event.target.value);
+
+    localStorage.setItem('search', event.target.value)
     }
+
+    React.useEffect(() => {
+      localStorage.setItem('searh',searchTerm)
+    },[searchTerm]);
 
     const searchedStories = stories.filter((story)=>
     story.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    
   
     // const handleSearch = (event) => {
     //   console.log(event.target.value);
