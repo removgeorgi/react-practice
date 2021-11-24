@@ -9,6 +9,7 @@
     "check-outdated": "^2.10.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-script-tag": "^1.1.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1",
     "yarn": "^1.22.15"
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "@webpack-cli/generators": "^2.4.0",
+    "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.4.1",
     "webpack": "^5.58.1",
     "webpack-cli": "^4.9.0",
