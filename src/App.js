@@ -40,7 +40,9 @@ const App = () => {
 		<div>
 			<h1>My hacker stories</h1>
 
-			<InputWithLabel id="search" label="Search" value={searchTerm} onInputChange={handleSearch} />
+			<InputWithLabel id="search" value={searchTerm} onInputChange={handleSearch}>
+				<strong>Search:</strong>
+			</InputWithLabel>
 
 			<hr />
 
@@ -49,9 +51,9 @@ const App = () => {
 	);
 };
 
-const InputWithLabel = ({ id, label, value, type = 'text', onInputChange }) => (
+const InputWithLabel = ({ id, children, value, type = 'text', onInputChange }) => (
 	<div>
-		<label htmlFor={id}>{label}</label>
+		<label htmlFor={id}>{children}</label>
 		<input id={id} type={type} value={value} onChange={onInputChange} />
 	</div>
 	/* onChange attribute is needed first to add logging events of what was inputted
