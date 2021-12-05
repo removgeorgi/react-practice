@@ -67,21 +67,31 @@ const InputWithLabel = ({
   onInputChange,
   isFocused,
   children,
-}) => (
-  <div>
-    <label htmlFor={id}>{children}</label>
-    <input
-      id={id}
-      type={type}
-      value={value}
-      autoFocus={isFocused}
-      onChange={onInputChange}
-    />
-  </div>
-  /* onChange attribute is needed first to add logging events of what was inputted
+}) => {
+  const inputRef = React.useRef();
+
+  React.useEffect(() => {
+    if (isFocused && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isFocused]);
+
+  return (
+    <div>
+      <label htmlFor={id}>{children}</label>
+      <input
+        ref={inputRef}
+        id={id}
+        type={type}
+        value={value}
+        onChange={onInputChange}
+      />
+    </div>
+    /* onChange attribute is needed first to add logging events of what was inputted
       and second to add synthetic events which prevents native browser behavior
       (e.g. refreshing a page after the user clicks a form's submit button) */
-);
+  );
+};
 
 const List = ({ list }) => (
   <ul>
